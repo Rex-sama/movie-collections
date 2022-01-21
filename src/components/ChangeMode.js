@@ -8,7 +8,7 @@ function ChangeMode({ darkMode, setDarkMode }) {
   };
 
   return (
-    <div className="fixed top-4 right-4">
+    <div className="fixed top-4 right-4 z-50">
       <Switch
         checkedIcon={
           <div className="flex justify-center items-center h-full">

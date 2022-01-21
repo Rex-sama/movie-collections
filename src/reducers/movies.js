@@ -1,11 +1,15 @@
 import * as types from "../actions/types";
 
-const init = { loading: true };
+const init = { loading: true, now_playing: {}, popular: {}, top_rated: {} };
 
 const movies = (state = init, action) => {
   switch (action.type) {
     case types.FETCH_NOW_PLAYING:
-      return { ...state, ...action.payload };
+      return { ...state, now_playing: action.payload };
+    case types.FETCH_POPULAR:
+      return { ...state, popular: action.payload };
+    case types.FETCH_TOP_RATED:
+      return { ...state, top_rated: action.payload };
     default:
       return state;
   }

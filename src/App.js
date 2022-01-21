@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState } from "react";
 import ChangeMode from "./components/ChangeMode";
 import NavBar from "./components/NavBar";
 import { Switch, Route } from "react-router-dom";
@@ -10,7 +10,6 @@ import Greetings from "./components/Greetings";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-
   return (
     <div
       className={darkMode ? "dark" : ""}

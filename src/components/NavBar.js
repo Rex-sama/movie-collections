@@ -1,9 +1,7 @@
 import React from "react";
-import {
-  AiOutlineHome,
-  AiOutlineHeart,
-  AiOutlineCalendar,
-} from "react-icons/ai";
+import { AiOutlineHome } from "react-icons/ai";
+import { BiCalendar } from "react-icons/bi";
+import { IoDesktopOutline } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
 
@@ -42,9 +40,9 @@ function NavBar() {
         style={{ textDecoration: "none" }}
       >
         <div className="flex justify-center ">
-          <AiOutlineHeart className="text-5xl" />
+          <BiCalendar className="text-5xl" />
         </div>
-        <p>Popular</p>
+        <p>Upcoming</p>
       </NavLink>
       <NavLink
         exact
@@ -53,9 +51,9 @@ function NavBar() {
         style={{ textDecoration: "none" }}
       >
         <div className="flex justify-center ">
-          <AiOutlineCalendar className="text-5xl" />
+          <IoDesktopOutline className="text-5xl" />
         </div>
-        <p>Upcoming</p>
+        <p>TV shows</p>
       </NavLink>
     </div>
   );
