@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Popular from "./pages/Popular";
 import Upcoming from "./pages/Upcoming";
+import Greetings from "./components/Greetings";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -20,12 +21,7 @@ function App() {
       }}
     >
       <div className="dark:bg-gray-900 dark:text-white">
-        <div className="px-4 py-8">
-          <p className="text-4xl pb-1 font-medium">Hi Rohit!</p>
-          <p className="text-2xl dark:font-light  ">
-            Welcome,explore the movies{" "}
-          </p>
-        </div>
+        <Greetings />
         <ChangeMode darkMode={darkMode} setDarkMode={setDarkMode} />
       </div>
       <div
