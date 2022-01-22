@@ -1,10 +1,21 @@
 import * as types from "../actions/types";
 
-const genre = (state = { loading: true }, action) => {
-  if (action.type === types.FETCH_GENRES) {
-    return { ...state, ...action.payload };
-  } else {
-    return state;
+const init = {
+  loading: true,
+  genre: {},
+  search: {},
+};
+
+const genre = (state = init, action) => {
+  switch (action.type) {
+    case types.FETCH_GENRES:
+      return { ...state, genre: action.payload };
+    case types.FETCH_SEARCH_MOVIES:
+      return { ...state, search: action.payload };
+    case types.FETCH_FINISHED:
+      return { ...state, loading: false };
+    default:
+      return state;
   }
 };
 

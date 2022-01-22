@@ -1,29 +1,33 @@
-import { Carousel } from "react-responsive-carousel";
+import { fetchMovie, toogleHeader } from "../actions";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function PortraitMode({ base, movies }) {
-  console.log("popular", movies);
+  const dispatch = useDispatch();
+  const history = useHistory();
+ 
   return (
-    <div className="pt-5 bg-gray-300">
-      <Carousel
-        showThumbs={false}
-        showIndicators={false}
-        showArrows={false}
-        showStatus={false}
-        centerMode={true}
-      >
-        {movies?.map((item) => {
-          return (
-            <div className="px-2 bg-cover" key={item.id}>
-              <img
-                className="rounded-lg"
-                src={`${base?.secure_base_url}h632${item.poster_path}`}
-                alt={item.title}
-              />
-              <p>{item.title}</p>
-            </div>
-          );
-        })}
-      </Carousel>
+    <div className="pt-5 grid grid-cols-2 dark:text-white mt-5 mb-20">
+      {movies?.map((item) => {
+        return (
+          <div
+            className="px-2 bg-cover mb-8"
+            key={item.id}
+            onClick={() => {
+              dispatch(fetchMovie(`/movie/${item.id}`));
+              history.push(`/movie/${item.id}`);
+              dispatch(toogleHeader(false));
+            }}
+          >
+            <img
+              className="rounded-lg"
+              src={`${base?.secure_base_url}w780${item.poster_path}`}
+              alt={item.title}
+            />
+            <p className="text-center">{item.title}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }

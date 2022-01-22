@@ -1,5 +1,4 @@
-import {useState } from "react";
-import ChangeMode from "./components/ChangeMode";
+import { useState } from "react";
 import NavBar from "./components/NavBar";
 import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -7,6 +6,7 @@ import Search from "./pages/Search";
 import Popular from "./pages/Popular";
 import Upcoming from "./pages/Upcoming";
 import Greetings from "./components/Greetings";
+import MovieDetails from "./pages/MovieDetails";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -19,9 +19,8 @@ function App() {
         height: "100%",
       }}
     >
-      <div className="dark:bg-gray-900 dark:text-white">
+      <div className="dark:bg-gray-900 dark:text-white ">
         <Greetings />
-        <ChangeMode darkMode={darkMode} setDarkMode={setDarkMode} />
       </div>
       <div
         className="dark:bg-gray-900 dark:text-white "
@@ -35,10 +34,11 @@ function App() {
           <Route exact path="/search" component={Search} />
           <Route exact path="/popular" component={Popular} />
           <Route exact path="/upcoming" component={Upcoming} />
+          <Route exact path="/movie/:id" component={MovieDetails}></Route>
         </Switch>
       </div>
 
-      <NavBar />
+      <NavBar darkMode={darkMode} setDarkMode={setDarkMode} />
     </div>
   );
 }

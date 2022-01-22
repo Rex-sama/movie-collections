@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getConfig, getNowPlaying, getPopular, getTopRated } from "../actions";
+import {
+  getConfig,
+  getNowPlaying,
+  getPopular,
+  getTopRated,
+  getUpcoming,
+  toogleHeader,
+} from "../actions";
 import LandScapeMode from "../components/LandScapeMode";
 
 function Home() {
@@ -13,8 +20,10 @@ function Home() {
   useEffect(() => {
     dispatch(getConfig());
     dispatch(getNowPlaying());
+    dispatch(getUpcoming());
     dispatch(getPopular());
     dispatch(getTopRated());
+    dispatch(toogleHeader(true));
   }, [dispatch]);
   return (
     <div>
@@ -23,6 +32,12 @@ function Home() {
         base={base}
         movies={data.movies.now_playing?.results}
         autoplay={true}
+      />
+      <h1 className="text-3xl px-4 font-medium">Upcoming</h1>
+      <LandScapeMode
+        base={base}
+        movies={data.movies.upcoming?.results}
+        autoplay={false}
       />
       <h1 className="text-3xl px-4 font-medium">Popular</h1>
       <LandScapeMode

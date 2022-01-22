@@ -6,6 +6,7 @@ const config = (state = init, action) => {
   switch (action.type) {
     case types.FETCH_CONFIG:
       return { ...state, baseUrl: action.payload };
+
     default:
       return state;
   }
