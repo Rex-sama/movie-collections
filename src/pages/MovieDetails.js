@@ -47,7 +47,9 @@ function MovieDetails() {
         <p className="text-4xl font-bold" style={{ width: "90%" }}>
           {movie?.title} ({movie?.release_date?.split("-")[0]})
         </p>
-        {movie?.tagline && <p style={{ color: "#01d277" }}>{movie?.tagline}</p>}
+        {movie?.tagline && (
+          <p className="text-green-500 dark:text-green-400">{movie?.tagline}</p>
+        )}
       </div>
       <div className="grid grid-cols-2">
         <div className="pr-6">
@@ -82,7 +84,7 @@ function MovieDetails() {
               {movie?.vote_average?.toFixed(1)}/10
             </p>
           </div>
-          <div className="flex items-center gap-2 py-2">
+          <div className="flex items-center gap-2 pb-3">
             <Dollar style={{ fontSize: "2em", color: "#01d277" }} /> $
             {movie?.revenue?.toLocaleString("en-Us")}
           </div>
@@ -111,8 +113,8 @@ function MovieDetails() {
             return (
               <p
                 key={item.id}
-                className="py-3 px-6 rounded-full font-medium"
-                style={{ fontSize: "12px", backgroundColor: "#01d277" }}
+                className="py-3 px-6 rounded-full font-medium bg-green-400 dark:bg-green-600"
+                style={{ fontSize: "12px" }}
               >
                 {item.name}
               </p>

@@ -55,7 +55,7 @@ function Search() {
             return (
               <div
                 key={item.id}
-                className="text-center px-6 py-8 text-2xl font-medium bg-blue-400 dark:bg-red-500 dark:text-gray-200 rounded-lg"
+                className="text-center px-6 py-8 text-2xl font-medium bg-blue-400 dark:bg-green-600 dark:text-gray-200 rounded-lg"
               >
                 <p>{item.name}</p>
               </div>

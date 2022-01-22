@@ -19,7 +19,7 @@ function NavBar({ darkMode, setDarkMode }) {
       <NavLink
         exact
         to="/"
-        activeClassName="text-blue-500 cursor-pointer dark:text-red-400"
+        activeClassName="text-blue-500 cursor-pointer dark:text-green-400"
         style={{ textDecoration: "none" }}
       >
         <div className="flex justify-center">
@@ -30,7 +30,7 @@ function NavBar({ darkMode, setDarkMode }) {
       <NavLink
         exact
         to="/search"
-        activeClassName="text-blue-600 cursor-pointer  dark:text-red-400"
+        activeClassName="text-blue-600 cursor-pointer  dark:text-green-400"
         style={{ textDecoration: "none" }}
       >
         <div className="flex justify-center ">
@@ -41,7 +41,7 @@ function NavBar({ darkMode, setDarkMode }) {
       <NavLink
         exact
         to="/tv-shows"
-        activeClassName="text-blue-600 cursor-pointer  dark:text-red-400"
+        activeClassName="text-blue-600 cursor-pointer  dark:text-green-400"
         style={{ textDecoration: "none" }}
       >
         <div className="flex justify-center ">
