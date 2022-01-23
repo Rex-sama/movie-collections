@@ -43,31 +43,33 @@ function MovieDetails() {
   }, [movie, dispatch]);
 
   return (
-    <div className="p-5 dark:text-white  ">
+    <div className="p-4 dark:text-white  ">
       <div>
         <img src={logo} alt="tmdb_logo" width={100} height={90} />
       </div>
-      <div className=" py-7">
-        <p className="text-4xl font-bold" style={{ width: "90%" }}>
+      <div className=" py-4">
+        <p className=" font-bold" style={{ fontSize: "1.3em" }}>
           {movie?.title} ({movie?.release_date?.split("-")[0]})
         </p>
         {movie?.tagline && (
-          <p className="text-green-500 dark:text-green-400">{movie?.tagline}</p>
+          <p className="text-green-500 dark:text-green-400 text-sm">
+            {movie?.tagline}
+          </p>
         )}
       </div>
       <div className="grid grid-cols-2">
-        <div className="pr-6">
+        <div className="pr-3">
           <img
             src={`${base?.secure_base_url}w780${movie?.poster_path}`}
             alt="poster"
-            className="rounded-lg"
+            className="rounded-md"
           />
         </div>
         <div>
-          <p>
+          <p style={{ fontSize: "0.85em" }}>
             {movie?.status} - {movie?.runtime}min
           </p>
-          <p style={{ fontSize: "0.8em" }} className="flex flex-wrap mt-2">
+          <p style={{ fontSize: "0.8em" }} className="flex flex-wrap ">
             {movie?.spoken_languages?.map((item, index) => {
               return (
                 <span className="mr-2" key={index}>
@@ -77,7 +79,7 @@ function MovieDetails() {
             })}
           </p>
 
-          <div className="flex items-center gap-2 py-2">
+          <div className="flex items-center gap-1 ">
             <ReactStars
               count={5}
               size={24}
@@ -88,37 +90,40 @@ function MovieDetails() {
               {movie?.vote_average?.toFixed(1)}/10
             </p>
           </div>
-          <div className="flex items-center gap-2 pb-3">
-            <Dollar style={{ fontSize: "2em", color: "#01d277" }} /> $
-            {movie?.revenue?.toLocaleString("en-Us")}
+          <div className="flex items-center gap-2 pb-1">
+            <Dollar style={{ fontSize: "1.8em", color: "#01d277" }} />
+            <p className="text-sm">
+              ${movie?.revenue?.toLocaleString("en-Us")}
+            </p>
           </div>
           <div>
             <div
-              className="flex items-center gap-2 mb-4 border border-gray-900 dark:border-green-500 py-2 px-5 rounded-full"
+              className="flex items-center gap-2 mb-2 border border-gray-900 dark:border-green-500 py-1 px-4 rounded-full"
               style={{ width: "fit-content" }}
             >
-              Trailer
-              <Play style={{ fontSize: "1.2em", marginTop: "2px" }} />
+              <p style={{ fontSize: "0.85em" }}> Trailer</p>
+              <Play style={{ fontSize: "1em", marginTop: "2px" }} />
             </div>
             <div
-              className="flex items-center gap-2 border border-gray-900 dark:border-green-500 py-2 px-5 rounded-full"
+              className="flex items-center gap-2 border border-gray-900 dark:border-green-500 py-1 px-4 rounded-full"
               style={{ width: "fit-content" }}
             >
-              Website
-              <BsLink45Deg style={{ fontSize: "1.2em", marginTop: "2px" }} />
+              <p style={{ fontSize: "0.85em" }}> Website</p>
+
+              <BsLink45Deg style={{ fontSize: "1em", marginTop: "2px" }} />
             </div>
           </div>
         </div>
       </div>
-      <div className="pt-7">
-        <p className="pb-4 text-2xl font-bold">Genres</p>
-        <div className="flex flex-wrap gap-3 ">
+      <div className="pt-6">
+        <p className="pb-4 text-xl font-bold">Genres</p>
+        <div className="flex flex-wrap gap-2 ">
           {movie?.genres?.map((item) => {
             return (
               <p
                 key={item.id}
-                className="py-3 px-6 rounded-full font-medium bg-green-400 dark:bg-green-600"
-                style={{ fontSize: "12px" }}
+                className="py-2 px-4 rounded-full font-medium bg-green-400 dark:bg-green-600"
+                style={{ fontSize: "15px" }}
               >
                 {item.name}
               </p>
@@ -127,12 +132,14 @@ function MovieDetails() {
         </div>
       </div>
 
-      <div className="pt-7">
-        <p className="pb-4 text-2xl font-bold">Synopsis</p>
-        <p className="leading-9 ..."> {movie.overview} </p>
+      <div className="pt-6">
+        <p className="pb-3 text-xl font-bold">Synopsis</p>
+        <p className="leading-6  ..." style={{ fontSize: "14px" }}>
+          {movie.overview}
+        </p>
       </div>
       <div className="pt-7">
-        <p className="pb-4 text-2xl font-bold">Cast</p>
+        <p className="pb-4 text-xl font-bold">Cast</p>
         <div className="overflow-scroll" style={{ height: "300px" }}>
           {credits?.map((item) => {
             return (
@@ -159,7 +166,7 @@ function MovieDetails() {
                     }}
                   />
                 </div>
-                <p style={{ fontSize: "12px" }}>
+                <p style={{ fontSize: "13px" }}>
                   {item.name} &nbsp;
                   <span
                     className="dark:text-white font-medium"
@@ -173,15 +180,10 @@ function MovieDetails() {
           })}
         </div>
       </div>
-      <div className="mt-20">
-        <p className=" text-3xl font-bold">Similar Movies</p>
+      <div className="mt-10">
+        <p className=" text-xl font-bold">Similar Movies</p>
         <PortraitMode base={base} movies={similar} />
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </div>
   );
 }

@@ -20,11 +20,11 @@ function PortraitMode({ base, movies }) {
             }}
           >
             <img
-              className="rounded-lg"
+              className="rounded-md"
               src={`${base?.secure_base_url}w780${item.poster_path}`}
               alt={item.title}
             />
-            <p className="text-center">{item.title}</p>
+            <p className="text-center text-sm">{item.title}</p>
           </div>
         );
       })}

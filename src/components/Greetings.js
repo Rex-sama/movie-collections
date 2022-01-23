@@ -6,9 +6,9 @@ function Greetings() {
   console.log(show);
   return (
     <div style={show ? { display: "block" } : { display: "none" }}>
-      <div className="px-4 py-8">
-        <p className="text-4xl pb-1 font-medium">Hi Rohit!</p>
-        <p className="w-9/12 dark:font-light mt-5 ">
+      <div className="px-4 pb-8 pt-5">
+        <p className="text-xl pb-1 font-medium">Hi Rohit!</p>
+        <p className="w-9/12 dark:font-light mt-1 text-sm">
           Explore your favourite movies and TV shows!
         </p>
       </div>

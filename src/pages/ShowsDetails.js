@@ -18,6 +18,7 @@ function ShowsDetails() {
           src={`${base?.secure_base_url}w300${show?.backdrop_path}`}
           alt="poster"
         />
+        <p className="text-3xl">{show?.name}</p>
       </div>
     </div>
   );

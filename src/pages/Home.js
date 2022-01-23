@@ -34,21 +34,21 @@ function Home() {
   return (
     <div>
       <Suspense fallback={<Loader />}>
-        <h1 className="text-3xl px-4 font-medium">Now Playing</h1>
+        <h1 className="text-xl px-4 font-medium">Now Playing</h1>
         <LandScapeMode
           base={base}
           movies={data.movies.now_playing?.results}
           autoplay={true}
           tv={false}
         />
-        <h1 className="text-3xl px-4 font-medium">Upcoming</h1>
+        <h1 className="text-xl px-4 font-medium">Upcoming</h1>
         <LandScapeMode
           base={base}
           movies={data.movies.upcoming?.results}
           autoplay={false}
           tv={false}
         />
-        <h1 className="text-3xl px-4 font-medium">Popular</h1>
+        <h1 className="text-xl px-4 font-medium">Popular</h1>
 
         <LandScapeMode
           base={base}
@@ -56,7 +56,7 @@ function Home() {
           autoplay={false}
           tv={false}
         />
-        <h1 className="text-3xl px-4 font-medium">Top Rated</h1>
+        <h1 className="text-xl px-4 font-medium">Top Rated</h1>
         <LandScapeMode
           base={base}
           movies={data.movies.top_rated?.results}

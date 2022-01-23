@@ -38,29 +38,27 @@ function Search() {
       className="px-4 dark:text-black"
       style={!show ? { paddingTop: "20px" } : { paddingTop: "0px" }}
     >
-      <div className="bg-white grid grid-cols-10 gap-2 border items-center border-black px-2 py-3 rounded-lg">
-        <FiSearch className="text-3xl ml-2" />
+      <div className="bg-white grid grid-cols-10 gap-2 border items-center border-black p-2 rounded-md">
+        <FiSearch className="text-xl ml-2" />
         <input
           type="text"
-          className="col-span-8 text-2xl pl-2 ml-1"
+          className="col-span-8 text-base pl-2 ml-1 outline-none"
           placeholder="Search"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyUp={onEnterText}
         />
-        {input && (
-          <GrClose className=" text-3xl" onClick={() => setInput("")} />
-        )}
+        {input && <GrClose className=" text-xl" onClick={() => setInput("")} />}
       </div>
 
       {show ? (
         <Suspense fallback={<Loader />}>
-          <div className="py-10 grid grid-cols-2 gap-4 mb-10 ">
+          <div className="py-8 grid grid-cols-2 gap-3 mb-10 ">
             {data.genre?.genre?.genres?.map((item) => {
               return (
                 <div
                   key={item.id}
-                  className="text-center px-6 py-8 text-2xl font-medium bg-blue-400 dark:bg-green-600 dark:text-gray-200 rounded-lg"
+                  className="text-center p-3 text-base font-medium bg-blue-400 dark:bg-green-600 dark:text-gray-200 rounded-md"
                 >
                   <p>{item.name}</p>
                 </div>
@@ -81,9 +79,6 @@ function Search() {
         </Suspense>
       )}
 
-      <br />
-      <br />
-      <br />
       <br />
     </div>
   );

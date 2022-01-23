@@ -25,10 +25,10 @@ function TVshows() {
   return (
     <div>
       <Suspense fallback={<Loader />}>
-        <h1 className="text-3xl px-4 font-medium">On Air Shows</h1>
+        <h1 className="text-xl px-4 font-medium">On Air Shows</h1>
         <LandScapeMode base={base} movies={on_air} autoplay={true} tv={true} />
 
-        <h1 className="text-3xl px-4 font-medium">Popular Shows</h1>
+        <h1 className="text-xl px-4 font-medium">Popular Shows</h1>
         <LandScapeMode
           base={base}
           movies={popular}
@@ -36,7 +36,7 @@ function TVshows() {
           tv={true}
         />
 
-        <h1 className="text-3xl px-4 font-medium">Top Rated Shows</h1>
+        <h1 className="text-xl px-4 font-medium">Top Rated Shows</h1>
         <LandScapeMode
           base={base}
           movies={top_rated}

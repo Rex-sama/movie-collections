@@ -12,10 +12,7 @@ function NavBar({ darkMode, setDarkMode }) {
   };
 
   return (
-    <div
-      className="flex justify-around items-center bg-white border-t-2 fixed bottom-0 w-full p-4 dark:bg-gray-900 dark:text-gray-400"
-      style={{ fontSize: "1em" }}
-    >
+    <div className="flex justify-around items-center text-sm bg-white border-t-2 fixed bottom-0 w-full p-2 dark:bg-gray-900 dark:text-gray-400">
       <NavLink
         exact
         to="/"
@@ -23,7 +20,7 @@ function NavBar({ darkMode, setDarkMode }) {
         style={{ textDecoration: "none" }}
       >
         <div className="flex justify-center">
-          <AiOutlineHome className="text-5xl" />
+          <AiOutlineHome className="text-3xl" />
         </div>
         <p>Home</p>
       </NavLink>
@@ -34,7 +31,7 @@ function NavBar({ darkMode, setDarkMode }) {
         style={{ textDecoration: "none" }}
       >
         <div className="flex justify-center ">
-          <FiSearch className="text-5xl" />
+          <FiSearch className="text-3xl" />
         </div>
         <p> Search </p>
       </NavLink>
@@ -45,7 +42,7 @@ function NavBar({ darkMode, setDarkMode }) {
         style={{ textDecoration: "none" }}
       >
         <div className="flex justify-center ">
-          <IoDesktopOutline className="text-5xl" />
+          <IoDesktopOutline className="text-3xl" />
         </div>
         <p>TV shows</p>
       </NavLink>
@@ -54,14 +51,14 @@ function NavBar({ darkMode, setDarkMode }) {
         {darkMode ? (
           <>
             <div className="flex justify-center ">
-              <BsFillMoonStarsFill className="text-5xl" />
+              <BsFillMoonStarsFill className="text-3xl" />
             </div>
             <p>Dark</p>
           </>
         ) : (
           <>
             <div className="flex justify-center ">
-              <FaSun className="text-5xl" />
+              <FaSun className="text-3xl" />
             </div>
             <p>Light</p>
           </>

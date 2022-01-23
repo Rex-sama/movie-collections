@@ -19,7 +19,7 @@ function LandScapeMode({ base, movies, autoplay, tv }) {
   };
 
   return (
-    <div className="pt-5">
+    <div className="pt-3">
       <Carousel
         autoPlay={autoplay ? true : false}
         infiniteLoop={autoplay ? true : false}
@@ -41,7 +41,7 @@ function LandScapeMode({ base, movies, autoplay, tv }) {
                 src={`${base?.secure_base_url}w500${item.backdrop_path}`}
                 alt={item.title}
               />
-              <p>{item.title ? item.title : item.name}</p>
+              <p className="text-sm">{item.title ? item.title : item.name}</p>
             </div>
           );
         })}
