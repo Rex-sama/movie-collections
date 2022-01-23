@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { GrClose } from "react-icons/gr";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +8,8 @@ import {
   getSearchMovie,
   toogleHeader,
 } from "../actions";
-import PortraitMode from "../components/PortraitMode";
+import Loader from "../components/Loader";
+const PortraitMode = React.lazy(() => import("../components/PortraitMode"));
 
 function Search() {
   const data = useSelector((state) => state);
@@ -18,7 +19,9 @@ function Search() {
   const show = data.movies.header;
   console.log(data);
   useEffect(() => {
+    dispatch(toogleHeader(true));
     dispatch(getGenre());
+    window.scrollTo(0, 0);
   }, [dispatch]);
 
   const onEnterText = (e) => {
@@ -49,23 +52,37 @@ function Search() {
           <GrClose className=" text-3xl" onClick={() => setInput("")} />
         )}
       </div>
+
       {show ? (
-        <div className="py-10 grid grid-cols-2 gap-4 mb-10 ">
-          {data.genre?.genre?.genres?.map((item) => {
-            return (
-              <div
-                key={item.id}
-                className="text-center px-6 py-8 text-2xl font-medium bg-blue-400 dark:bg-green-600 dark:text-gray-200 rounded-lg"
-              >
-                <p>{item.name}</p>
-              </div>
-            );
-          })}
-        </div>
+        <Suspense fallback={<Loader />}>
+          <div className="py-10 grid grid-cols-2 gap-4 mb-10 ">
+            {data.genre?.genre?.genres?.map((item) => {
+              return (
+                <div
+                  key={item.id}
+                  className="text-center px-6 py-8 text-2xl font-medium bg-blue-400 dark:bg-green-600 dark:text-gray-200 rounded-lg"
+                >
+                  <p>{item.name}</p>
+                </div>
+              );
+            })}
+          </div>
+        </Suspense>
       ) : (
-        <PortraitMode base={base} movies={data.genre?.search?.results} />
+        <Suspense
+          fallback={
+            <div className="mt-40">
+              <Loader />
+              <div style={{ height: "100vw" }}></div>
+            </div>
+          }
+        >
+          <PortraitMode base={base} movies={data.genre?.search?.results} />
+        </Suspense>
       )}
 
+      <br />
+      <br />
       <br />
       <br />
     </div>

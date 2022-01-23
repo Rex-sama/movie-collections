@@ -63,3 +63,19 @@ export const getSimilarMovies = (id) => async (dispatch) => {
   const response = await axios.get(`${id}/similar`);
   dispatch({ type: types.FECTH_SIMILAR_MOVIES, payload: response.data });
 };
+
+export const getTvShows = () => async (dispatch) => {
+  const tvAir = await axios.get("/tv/on_the_air");
+  dispatch({ type: types.FETCH_TV_ON_AIR, payload: tvAir.data });
+
+  const popular = await axios.get("/tv/popular");
+  dispatch({ type: types.FETCH_TV_POPULAR, payload: popular.data });
+
+  const topRated = await axios.get("/tv/top_rated");
+  dispatch({ type: types.FETCH_TV_TOP_RATED, payload: topRated.data });
+};
+
+export const selectShow = (id) => async (dispatch) => {
+  const response = await axios.get(id);
+  dispatch({ type: types.FETCH_TV_SHOW, payload: response.data });
+};

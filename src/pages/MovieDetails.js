@@ -22,6 +22,9 @@ function MovieDetails() {
   const base = data.config.baseUrl?.images;
   const credits = data.movie.credit?.cast;
   const similar = data.movie.similar?.results;
+  const score = Math.round(Number(movie?.vote_average) / 2);
+
+  console.log("Score", score);
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -32,6 +35,7 @@ function MovieDetails() {
     dispatch(fetchMovie(location.pathname));
     dispatch(toogleHeader(false));
     dispatch(getSimilarMovies(location.pathname));
+    window.scrollTo(0, 0);
   }, [location, dispatch]);
 
   useEffect(() => {
@@ -78,7 +82,7 @@ function MovieDetails() {
               count={5}
               size={24}
               activeColor="#01d277"
-              value={Math.round(movie?.vote_average / 2)}
+              value={score}
             />
             <p style={{ fontSize: "0.8em" }}>
               {movie?.vote_average?.toFixed(1)}/10

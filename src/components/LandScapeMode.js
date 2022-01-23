@@ -1,11 +1,23 @@
 import { Carousel } from "react-responsive-carousel";
-import { fetchMovie, toogleHeader } from "../actions";
+import { fetchMovie, selectShow, toogleHeader } from "../actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-function LandScapeMode({ base, movies, autoplay }) {
+function LandScapeMode({ base, movies, autoplay, tv }) {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const onSelectItem = (id) => {
+    if (!tv) {
+      dispatch(fetchMovie(`/movie/${id}`));
+      history.push(`/movie/${id}`);
+    } else {
+      dispatch(selectShow(`/tv/${id}`));
+      history.push(`/tv/${id}`);
+    }
+    dispatch(toogleHeader(false));
+  };
+
   return (
     <div className="pt-5">
       <Carousel
@@ -22,18 +34,14 @@ function LandScapeMode({ base, movies, autoplay }) {
             <div
               className="px-2 bg-cover"
               key={item.id}
-              onClick={() => {
-                dispatch(fetchMovie(`/movie/${item.id}`));
-                history.push(`/movie/${item.id}`);
-                dispatch(toogleHeader(false));
-              }}
+              onClick={() => onSelectItem(item.id)}
             >
               <img
                 className="rounded-lg"
                 src={`${base?.secure_base_url}w500${item.backdrop_path}`}
                 alt={item.title}
               />
-              <p>{item.title}</p>
+              <p>{item.title ? item.title : item.name}</p>
             </div>
           );
         })}

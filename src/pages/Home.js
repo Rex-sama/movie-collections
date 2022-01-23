@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getConfig,
@@ -8,7 +8,8 @@ import {
   getUpcoming,
   toogleHeader,
 } from "../actions";
-import LandScapeMode from "../components/LandScapeMode";
+import Loader from "../components/Loader";
+const LandScapeMode = React.lazy(() => import("../components/LandScapeMode"));
 
 function Home() {
   const data = useSelector((state) => state);
@@ -25,32 +26,45 @@ function Home() {
     dispatch(getTopRated());
     dispatch(toogleHeader(true));
   }, [dispatch]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
-      <h1 className="text-3xl px-4 font-medium">Now Playing</h1>
-      <LandScapeMode
-        base={base}
-        movies={data.movies.now_playing?.results}
-        autoplay={true}
-      />
-      <h1 className="text-3xl px-4 font-medium">Upcoming</h1>
-      <LandScapeMode
-        base={base}
-        movies={data.movies.upcoming?.results}
-        autoplay={false}
-      />
-      <h1 className="text-3xl px-4 font-medium">Popular</h1>
-      <LandScapeMode
-        base={base}
-        movies={data.movies.popular?.results}
-        autoplay={false}
-      />
-      <h1 className="text-3xl px-4 font-medium">Top Rated</h1>
-      <LandScapeMode
-        base={base}
-        movies={data.movies.top_rated?.results}
-        autoplay={false}
-      />
+      <Suspense fallback={<Loader />}>
+        <h1 className="text-3xl px-4 font-medium">Now Playing</h1>
+        <LandScapeMode
+          base={base}
+          movies={data.movies.now_playing?.results}
+          autoplay={true}
+          tv={false}
+        />
+        <h1 className="text-3xl px-4 font-medium">Upcoming</h1>
+        <LandScapeMode
+          base={base}
+          movies={data.movies.upcoming?.results}
+          autoplay={false}
+          tv={false}
+        />
+        <h1 className="text-3xl px-4 font-medium">Popular</h1>
+
+        <LandScapeMode
+          base={base}
+          movies={data.movies.popular?.results}
+          autoplay={false}
+          tv={false}
+        />
+        <h1 className="text-3xl px-4 font-medium">Top Rated</h1>
+        <LandScapeMode
+          base={base}
+          movies={data.movies.top_rated?.results}
+          autoplay={false}
+          tv={false}
+        />
+      </Suspense>
+
       <br />
       <br />
       <br />

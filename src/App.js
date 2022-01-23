@@ -3,10 +3,10 @@ import NavBar from "./components/NavBar";
 import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
-import Popular from "./pages/Popular";
-import Upcoming from "./pages/Upcoming";
 import Greetings from "./components/Greetings";
 import MovieDetails from "./pages/MovieDetails";
+import TVshows from "./pages/TVshows";
+import ShowsDetails from "./pages/ShowsDetails";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -32,9 +32,9 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/search" component={Search} />
-          <Route exact path="/popular" component={Popular} />
-          <Route exact path="/upcoming" component={Upcoming} />
-          <Route exact path="/movie/:id" component={MovieDetails}></Route>
+          <Route exact path="/tv-shows" component={TVshows} />
+          <Route exact path="/movie/:id" component={MovieDetails} />
+          <Route exact path="/tv/:id" component={ShowsDetails} />
         </Switch>
       </div>
 
