@@ -79,3 +79,10 @@ export const selectShow = (id) => async (dispatch) => {
   const response = await axios.get(id);
   dispatch({ type: types.FETCH_TV_SHOW, payload: response.data });
 };
+
+export const fetchGenre = (genre) => async (dispatch) => {
+  const response = await axios.get("/discover/movie", {
+    params: { with_genres: genre, page: 1 },
+  });
+  dispatch({ type: types.FETCH_GENRE_MOVIES, payload: response.data });
+};

@@ -7,6 +7,7 @@ import Greetings from "./components/Greetings";
 import MovieDetails from "./pages/MovieDetails";
 import TVshows from "./pages/TVshows";
 import ShowsDetails from "./pages/ShowsDetails";
+import MovieLists from "./pages/MovieLists";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -32,6 +33,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/search" component={Search} />
+          <Route exact path="/search/:id" component={MovieLists} />
           <Route exact path="/tv-shows" component={TVshows} />
           <Route exact path="/movie/:id" component={MovieDetails} />
           <Route exact path="/tv/:id" component={ShowsDetails} />

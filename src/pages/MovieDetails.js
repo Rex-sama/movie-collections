@@ -108,7 +108,9 @@ function MovieDetails() {
               className="flex items-center gap-2 border border-gray-900 dark:border-green-500 py-1 px-4 rounded-full"
               style={{ width: "fit-content" }}
             >
-              <p style={{ fontSize: "0.85em" }}> Website</p>
+              <a href={movie?.homepage} style={{ fontSize: "0.85em" }}>
+                Website
+              </a>
 
               <BsLink45Deg style={{ fontSize: "1em", marginTop: "2px" }} />
             </div>
