@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import ReactStars from "react-rating-stars-component";
 import {
   fetchMovie,
   getConfig,
@@ -15,6 +14,8 @@ import { HiOutlineCurrencyDollar as Dollar } from "react-icons/hi";
 import { BsFillPlayFill as Play } from "react-icons/bs";
 import { BsLink45Deg } from "react-icons/bs";
 import PortraitMode from "../components/PortraitMode";
+import ModalVideo from "react-modal-video";
+const ReactStars = React.lazy(() => import("react-stars"));
 
 function MovieDetails() {
   const data = useSelector((state) => state);
@@ -22,13 +23,16 @@ function MovieDetails() {
   const base = data.config.baseUrl?.images;
   const credits = data.movie.credit?.cast;
   const similar = data.movie.similar?.results;
-  const score = Math.round(Number(movie?.vote_average) / 2);
-
-  console.log("Score", score);
+  const score = Math.round(movie?.vote_average / 2);
+  const [isOpen, setOpen] = useState(false);
 
   const location = useLocation();
   const dispatch = useDispatch();
   console.log(movie);
+
+  const key = movie?.videos?.results?.find(
+    (video) => video.type === "Trailer" && video.site === "YouTube"
+  );
 
   useEffect(() => {
     dispatch(getConfig());
@@ -80,12 +84,16 @@ function MovieDetails() {
           </p>
 
           <div className="flex items-center gap-1 ">
-            <ReactStars
-              count={5}
-              size={24}
-              activeColor="#01d277"
-              value={score}
-            />
+            <Suspense fallback={"Loading..."}>
+              <ReactStars
+                count={5}
+                size={24}
+                activeColor="#01d277"
+                value={score}
+              />
+            </Suspense>
+
+            {console.log("sss", score)}
             <p style={{ fontSize: "0.8em" }}>
               {movie?.vote_average?.toFixed(1)}/10
             </p>
@@ -97,13 +105,22 @@ function MovieDetails() {
             </p>
           </div>
           <div>
-            <div
-              className="flex items-center gap-2 mb-2 border border-gray-900 dark:border-green-500 py-1 px-4 rounded-full"
-              style={{ width: "fit-content" }}
-            >
-              <p style={{ fontSize: "0.85em" }}> Trailer</p>
-              <Play style={{ fontSize: "1em", marginTop: "2px" }} />
+            <div onClick={() => setOpen(true)}>
+              <div
+                className="flex items-center gap-2 mb-2 border border-gray-900 dark:border-green-500 py-1 px-4 rounded-full"
+                style={{ width: "fit-content" }}
+              >
+                <p style={{ fontSize: "0.85em" }}> Trailer</p>
+                <Play style={{ fontSize: "1em", marginTop: "2px" }} />
+              </div>
+              <ModalVideo
+                channel="youtube"
+                isOpen={isOpen}
+                videoId={key}
+                onClose={() => setOpen(false)}
+              />
             </div>
+
             <div
               className="flex items-center gap-2 border border-gray-900 dark:border-green-500 py-1 px-4 rounded-full"
               style={{ width: "fit-content" }}

@@ -7,7 +7,7 @@ function PortraitMode({ base, movies }) {
   const history = useHistory();
  
   return (
-    <div className="pt-5 grid grid-cols-2 dark:text-white mt-5 mb-20">
+    <div className="pt-2 grid grid-cols-2 dark:text-white mt-5 mb-20">
       {movies?.map((item) => {
         return (
           <div

@@ -42,7 +42,9 @@ export const getSearchMovie = (name) => async (dispatch) => {
       language: "en-US",
     },
   });
+
   dispatch({ type: types.FETCH_SEARCH_MOVIES, payload: response.data });
+  dispatch({ type: types.FETCH_SEARCH_KEYWORD, payload: name });
 };
 
 export const toogleHeader = (key) => {
@@ -50,7 +52,11 @@ export const toogleHeader = (key) => {
 };
 
 export const fetchMovie = (id) => async (dispatch) => {
-  const response = await axios.get(id);
+  const response = await axios.get(id, {
+    params: {
+      append_to_response: "videos",
+    },
+  });
   dispatch({ type: types.FETCH_MOVIE, payload: response.data });
 };
 

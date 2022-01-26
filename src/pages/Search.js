@@ -23,11 +23,11 @@ function Search(props) {
     dispatch(getConfig());
   }, [dispatch]);
 
-  const onGenreSelect = (item) => {
+  const onGenreSelect = (item, name) => {
     dispatch(fetchGenre(item));
     dispatch(fetchComplete());
     dispatch(toogleHeader(false));
-    props.history.push(`/search/${item}`);
+    props.history.push(`/search/${name}-${item}`);
   };
 
   return (
@@ -43,7 +43,7 @@ function Search(props) {
               <div
                 key={item.id}
                 className="text-center p-3 text-base font-medium bg-blue-400 dark:bg-green-600 dark:text-gray-200 rounded-md"
-                onClick={() => onGenreSelect(item.id)}
+                onClick={() => onGenreSelect(item.id, item.name)}
               >
                 <p>{item.name}</p>
               </div>
