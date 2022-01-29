@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 function NavBar({ darkMode, setDarkMode }) {
   const changeMode = () => {
     setDarkMode(!darkMode);
+    localStorage.setItem("darkMode", !darkMode);
   };
 
   return (

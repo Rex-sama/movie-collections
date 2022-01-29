@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -11,6 +11,12 @@ import MovieLists from "./pages/MovieLists";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const mode = localStorage.getItem("darkMode");
+
+  useEffect(() => {
+    setDarkMode(JSON.parse(mode));
+  }, [mode]);
+
   return (
     <div
       className={darkMode ? "dark" : ""}

@@ -1,27 +1,44 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchComplete, getSearchMovie, toogleHeader } from "../actions";
+import {
+  fetchComplete,
+  genreId,
+  getSearchInput,
+  getSearchMovie,
+  toogleHeader,
+} from "../actions";
 import { FiSearch } from "react-icons/fi";
 import { GrClose } from "react-icons/gr";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 function SearchBox() {
-  const data = useSelector((state) => state.genre.search_keyword);
-  console.log("search - ", data);
-  const [input, setInput] = useState(data);
+  const data = useSelector((state) => state.genre);
+  const search = data?.search_keyword;
+  const search_id = localStorage.getItem("search_id");
+  const [input, setInput] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
-    setInput(data);
-  }, [data]);
+    if (location.hash) {
+      setInput("");
+    } else if (search_id || search) {
+      setInput(search_id || search);
+      dispatch(genreId(null));
+    } else {
+      setInput("");
+    }
+  }, [dispatch, search, search_id, location]);
 
   const onEnterText = (e) => {
     if (e.key === "Enter") {
       e.target.blur();
       dispatch(getSearchMovie(input));
+      dispatch(getSearchInput(input));
       dispatch(fetchComplete());
       dispatch(toogleHeader(false));
+      localStorage.setItem("search_id", input);
       history.push(`/search/${input}`);
     }
   };

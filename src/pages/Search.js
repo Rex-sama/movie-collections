@@ -1,11 +1,12 @@
 import React, { Suspense, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  fetchComplete,
   fetchGenre,
   getGenre,
   toogleHeader,
   getConfig,
+  genreId,
+  getSearchInput,
 } from "../actions";
 import Loader from "../components/Loader";
 import SearchBox from "../components/SearchBox";
@@ -20,14 +21,20 @@ function Search(props) {
     dispatch(toogleHeader(true));
     dispatch(getGenre());
     window.scrollTo(0, 0);
+    dispatch(genreId(null));
+    localStorage.removeItem("genre_id");
+    localStorage.removeItem("search_id");
+    dispatch(getSearchInput(""));
     dispatch(getConfig());
   }, [dispatch]);
 
   const onGenreSelect = (item, name) => {
+    dispatch(genreId({ id: item, name: name }));
+    localStorage.setItem("genre_id", JSON.stringify({ id: item, name: name }));
+    dispatch(getSearchInput(""));
     dispatch(fetchGenre(item));
-    dispatch(fetchComplete());
     dispatch(toogleHeader(false));
-    props.history.push(`/search/${name}-${item}`);
+    props.history.push(`/search/${name}/#${item}`);
   };
 
   return (

@@ -42,9 +42,11 @@ export const getSearchMovie = (name) => async (dispatch) => {
       language: "en-US",
     },
   });
-
   dispatch({ type: types.FETCH_SEARCH_MOVIES, payload: response.data });
-  dispatch({ type: types.FETCH_SEARCH_KEYWORD, payload: name });
+};
+
+export const getSearchInput = (name) => {
+  return { type: types.FETCH_SEARCH_KEYWORD, payload: name };
 };
 
 export const toogleHeader = (key) => {
@@ -91,4 +93,8 @@ export const fetchGenre = (genre) => async (dispatch) => {
     params: { with_genres: genre, page: 1 },
   });
   dispatch({ type: types.FETCH_GENRE_MOVIES, payload: response.data });
+};
+
+export const genreId = (genre) => {
+  return { type: types.FETCH_GENRE_ID, payload: genre };
 };

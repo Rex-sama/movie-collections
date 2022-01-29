@@ -28,11 +28,13 @@ function MovieDetails() {
 
   const location = useLocation();
   const dispatch = useDispatch();
-  console.log(movie);
+  // console.log(movie);
 
   const key = movie?.videos?.results?.find(
     (video) => video.type === "Trailer" && video.site === "YouTube"
   );
+
+  console.log("key", key);
 
   useEffect(() => {
     dispatch(getConfig());
@@ -92,8 +94,6 @@ function MovieDetails() {
                 value={score}
               />
             </Suspense>
-
-            {console.log("sss", score)}
             <p style={{ fontSize: "0.8em" }}>
               {movie?.vote_average?.toFixed(1)}/10
             </p>
@@ -113,22 +113,22 @@ function MovieDetails() {
                 <p style={{ fontSize: "0.85em" }}> Trailer</p>
                 <Play style={{ fontSize: "1em", marginTop: "2px" }} />
               </div>
-              <ModalVideo
-                channel="youtube"
-                isOpen={isOpen}
-                videoId={key}
-                onClose={() => setOpen(false)}
-              />
             </div>
+            <ModalVideo
+              channel="youtube"
+              isOpen={isOpen}
+              videoId={key?.key}
+              onClose={() => setOpen(false)}
+            />
 
             <div
               className="flex items-center gap-2 border border-gray-900 dark:border-green-500 py-1 px-4 rounded-full"
               style={{ width: "fit-content" }}
+              onClick={() => {
+                window.open(movie?.homepage);
+              }}
             >
-              <a href={movie?.homepage} style={{ fontSize: "0.85em" }}>
-                Website
-              </a>
-
+              <p style={{ fontSize: "0.85em" }}>Website</p>
               <BsLink45Deg style={{ fontSize: "1em", marginTop: "2px" }} />
             </div>
           </div>
@@ -173,7 +173,7 @@ function MovieDetails() {
                   <img
                     src={
                       item?.profile_path
-                        ? `${base?.secure_base_url}w45${item.profile_path}`
+                        ? `${base?.secure_base_url}w185${item.profile_path}`
                         : profile
                     }
                     alt="profile"

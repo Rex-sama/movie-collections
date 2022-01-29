@@ -5,6 +5,7 @@ const init = {
   genre: {},
   search: {},
   search_keyword: "",
+  genre_id: null,
 };
 
 const genre = (state = init, action) => {
@@ -17,6 +18,8 @@ const genre = (state = init, action) => {
       return { ...state, search: action.payload };
     case types.FETCH_SEARCH_KEYWORD:
       return { ...state, search_keyword: action.payload };
+    case types.FETCH_GENRE_ID:
+      return { ...state, genre_id: action.payload };
     case types.FETCH_FINISHED:
       return { ...state, loading: false };
     default:

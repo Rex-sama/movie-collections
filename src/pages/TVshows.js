@@ -13,7 +13,7 @@ function TVshows() {
   const on_air = data.tvShows.on_air?.results;
   const popular = data.tvShows.popular?.results;
   const top_rated = data.tvShows.top_rated?.results;
-  const tv_latest = data.tvShows.tv_latest?.results;
+  // const tv_latest = data.tvShows.tv_latest?.results;
 
   console.log(data);
 

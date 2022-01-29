@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import logo from "../assets/tmdb_logo.svg";
 
 function ShowsDetails() {
