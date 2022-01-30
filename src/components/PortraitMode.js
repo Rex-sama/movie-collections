@@ -1,11 +1,11 @@
-import { fetchMovie, toogleHeader } from "../actions";
+import { fetchMovie } from "../actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 function PortraitMode({ base, movies }) {
   const dispatch = useDispatch();
   const history = useHistory();
- 
+
   return (
     <div className="pt-2 grid grid-cols-2 dark:text-white mt-5 mb-20">
       {movies?.map((item) => {
@@ -16,7 +16,6 @@ function PortraitMode({ base, movies }) {
             onClick={() => {
               dispatch(fetchMovie(`/movie/${item.id}`));
               history.push(`/movie/${item.id}`);
-              dispatch(toogleHeader(false));
             }}
           >
             <img

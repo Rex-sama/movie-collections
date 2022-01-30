@@ -1,11 +1,8 @@
-import { useSelector } from "react-redux";
 import logo from "../assets/tmdb_logo.svg";
 
 function Greetings() {
-  const show = useSelector((state) => state.movies.header);
-  console.log(show);
   return (
-    <div style={show ? { display: "block" } : { display: "none" }}>
+    <div>
       <div className="px-4 pb-8 pt-5">
         <p className="text-xl pb-1 font-medium">Hi Rohit!</p>
         <p className="w-9/12 dark:font-light mt-1 text-sm">

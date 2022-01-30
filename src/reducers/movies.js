@@ -6,7 +6,6 @@ const init = {
   upcoming: {},
   popular: {},
   top_rated: {},
-  header: true,
 };
 
 const movies = (state = init, action) => {
@@ -19,8 +18,6 @@ const movies = (state = init, action) => {
       return { ...state, popular: action.payload };
     case types.FETCH_TOP_RATED:
       return { ...state, top_rated: action.payload };
-    case types.TOGGLE_HEADER:
-      return { ...state, header: action.payload };
     default:
       return state;
   }

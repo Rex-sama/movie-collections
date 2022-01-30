@@ -6,7 +6,6 @@ import {
   // genreId,
   getConfig,
   getSearchMovie,
-  toogleHeader,
 } from "../actions";
 import Loader from "../components/Loader";
 import SearchBox from "../components/SearchBox";
@@ -29,7 +28,6 @@ function MovieItems() {
 
   useEffect(() => {
     dispatch(getConfig());
-    dispatch(toogleHeader(false));
     if (hash) {
       dispatch(fetchGenre(hash.split("#")[1]));
       localStorage.removeItem("search_id");

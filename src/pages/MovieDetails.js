@@ -6,7 +6,6 @@ import {
   getConfig,
   getCredits,
   getSimilarMovies,
-  toogleHeader,
 } from "../actions";
 import logo from "../assets/tmdb_logo.svg";
 import profile from "../assets/profile.png";
@@ -17,7 +16,7 @@ import PortraitMode from "../components/PortraitMode";
 import ModalVideo from "react-modal-video";
 const ReactStars = React.lazy(() => import("react-stars"));
 
-function MovieDetails() {
+function MovieDetails(props) {
   const data = useSelector((state) => state);
   const movie = data.movie?.movie;
   const base = data.config.baseUrl?.images;
@@ -28,18 +27,15 @@ function MovieDetails() {
 
   const location = useLocation();
   const dispatch = useDispatch();
-  // console.log(movie);
+  console.log(movie);
 
   const key = movie?.videos?.results?.find(
     (video) => video.type === "Trailer" && video.site === "YouTube"
   );
 
-  console.log("key", key);
-
   useEffect(() => {
     dispatch(getConfig());
     dispatch(fetchMovie(location.pathname));
-    dispatch(toogleHeader(false));
     dispatch(getSimilarMovies(location.pathname));
     window.scrollTo(0, 0);
   }, [location, dispatch]);
@@ -47,6 +43,11 @@ function MovieDetails() {
   useEffect(() => {
     dispatch(getCredits(movie?.id));
   }, [movie, dispatch]);
+
+  const onGenre = (item) => {
+    console.log(item);
+    props.history.push(`/search/${item.name}/#${item.id}`);
+  };
 
   return (
     <div className="p-4 dark:text-white  ">
@@ -143,6 +144,7 @@ function MovieDetails() {
                 key={item.id}
                 className="py-2 px-4 rounded-full font-medium bg-green-400 dark:bg-green-600"
                 style={{ fontSize: "15px" }}
+                onClick={() => onGenre(item)}
               >
                 {item.name}
               </p>

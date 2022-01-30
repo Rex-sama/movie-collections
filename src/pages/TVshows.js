@@ -1,9 +1,9 @@
 import React, { Suspense, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getConfig, getTvShows } from "../actions";
+import Greetings from "../components/Greetings";
 import Loader from "../components/Loader";
 const LandScapeMode = React.lazy(() => import("../components/LandScapeMode"));
-
 
 function TVshows() {
   const data = useSelector((state) => state);
@@ -24,6 +24,9 @@ function TVshows() {
 
   return (
     <div>
+      <div className="dark:bg-gray-900 dark:text-white ">
+        <Greetings />
+      </div>
       <Suspense fallback={<Loader />}>
         <h1 className="text-xl px-4 font-medium">On Air Shows</h1>
         <LandScapeMode base={base} movies={on_air} autoplay={true} tv={true} />

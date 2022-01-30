@@ -1,7 +1,8 @@
 import { Carousel } from "react-responsive-carousel";
-import { fetchMovie, selectShow, toogleHeader } from "../actions";
+import { fetchMovie, selectShow} from "../actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 
 function LandScapeMode({ base, movies, autoplay, tv }) {
   const dispatch = useDispatch();
@@ -15,7 +16,6 @@ function LandScapeMode({ base, movies, autoplay, tv }) {
       dispatch(selectShow(`/tv/${id}`));
       history.push(`/tv/${id}`);
     }
-    dispatch(toogleHeader(false));
   };
 
   return (
@@ -36,6 +36,7 @@ function LandScapeMode({ base, movies, autoplay, tv }) {
               key={item.id}
               onClick={() => onSelectItem(item.id)}
             >
+              
               <img
                 className="rounded-lg"
                 src={`${base?.secure_base_url}w500${item.backdrop_path}`}

@@ -3,7 +3,6 @@ import NavBar from "./components/NavBar";
 import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
-import Greetings from "./components/Greetings";
 import MovieDetails from "./pages/MovieDetails";
 import TVshows from "./pages/TVshows";
 import ShowsDetails from "./pages/ShowsDetails";
@@ -26,15 +25,9 @@ function App() {
         height: "100%",
       }}
     >
-      <div className="dark:bg-gray-900 dark:text-white ">
-        <Greetings />
-      </div>
       <div
-        className="dark:bg-gray-900 dark:text-white "
-        style={{
-          height: "auto",
-          minHeight: "calc(100% - 160.5px)",
-        }}
+        className="dark:bg-gray-900 dark:text-white  "
+        style={{ height: "auto", maxHeight: "inherit" }}
       >
         <Switch>
           <Route exact path="/" component={Home} />
@@ -45,7 +38,6 @@ function App() {
           <Route exact path="/tv/:id" component={ShowsDetails} />
         </Switch>
       </div>
-
       <NavBar darkMode={darkMode} setDarkMode={setDarkMode} />
     </div>
   );

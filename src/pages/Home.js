@@ -1,13 +1,7 @@
 import React, { Suspense, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getConfig,
-  getNowPlaying,
-  getPopular,
-  getTopRated,
-  getUpcoming,
-  toogleHeader,
-} from "../actions";
+import { getConfig, getMovies } from "../actions";
+import Greetings from "../components/Greetings";
 import Loader from "../components/Loader";
 const LandScapeMode = React.lazy(() => import("../components/LandScapeMode"));
 
@@ -20,11 +14,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(getConfig());
-    dispatch(getNowPlaying());
-    dispatch(getUpcoming());
-    dispatch(getPopular());
-    dispatch(getTopRated());
-    dispatch(toogleHeader(true));
+    dispatch(getMovies());
   }, [dispatch]);
 
   useEffect(() => {
@@ -33,6 +23,9 @@ function Home() {
 
   return (
     <div>
+      <div className="dark:bg-gray-900 dark:text-white ">
+        <Greetings />
+      </div>
       <Suspense fallback={<Loader />}>
         <h1 className="text-xl px-4 font-medium">Now Playing</h1>
         <LandScapeMode

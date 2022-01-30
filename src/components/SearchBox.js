@@ -5,7 +5,6 @@ import {
   genreId,
   getSearchInput,
   getSearchMovie,
-  toogleHeader,
 } from "../actions";
 import { FiSearch } from "react-icons/fi";
 import { GrClose } from "react-icons/gr";
@@ -37,7 +36,6 @@ function SearchBox() {
       dispatch(getSearchMovie(input));
       dispatch(getSearchInput(input));
       dispatch(fetchComplete());
-      dispatch(toogleHeader(false));
       localStorage.setItem("search_id", input);
       history.push(`/search/${input}`);
     }
