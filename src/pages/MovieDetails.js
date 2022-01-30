@@ -24,11 +24,10 @@ function MovieDetails(props) {
   const similar = data.movie.similar?.results;
   const score = Math.round(movie?.vote_average / 2);
   const [isOpen, setOpen] = useState(false);
-
   const location = useLocation();
   const dispatch = useDispatch();
   console.log(movie);
-
+  console.log(data);
   const key = movie?.videos?.results?.find(
     (video) => video.type === "Trailer" && video.site === "YouTube"
   );
@@ -45,8 +44,11 @@ function MovieDetails(props) {
   }, [movie, dispatch]);
 
   const onGenre = (item) => {
-    console.log(item);
     props.history.push(`/search/${item.name}/#${item.id}`);
+  };
+
+  const onCastClick = (cast) => {
+    window.open(`https://www.google.com/search?q=${cast}`);
   };
 
   return (
@@ -185,9 +187,13 @@ function MovieDetails(props) {
                       height: "100%",
                       objectFit: "cover",
                     }}
+                    onClick={() => onCastClick(item.name)}
                   />
                 </div>
-                <p style={{ fontSize: "13px" }}>
+                <p
+                  style={{ fontSize: "13px" }}
+                  onClick={() => onCastClick(item.name)}
+                >
                   {item.name} &nbsp;
                   <span
                     className="dark:text-white font-medium"
