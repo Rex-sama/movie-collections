@@ -1,6 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "theme_color" : "#d0021b",
+"background_color" : "#1b1b1b",
+"display" : "standalone",
+"scope" : "/",
+"start_url" : "/",
+"name" : "MovieLib",
+"short_name" : "Movie",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +15,15 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x200"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x532"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+
 }

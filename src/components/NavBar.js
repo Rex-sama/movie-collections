@@ -6,14 +6,17 @@ import { FaSun } from "react-icons/fa";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 
-function NavBar({ darkMode, setDarkMode }) {
+function NavBar({ darkMode, setDarkMode, width }) {
   const changeMode = () => {
     setDarkMode(!darkMode);
     localStorage.setItem("darkMode", !darkMode);
   };
 
   return (
-    <div className="flex justify-around items-center text-sm bg-white border-t-2 fixed bottom-0 w-full p-2 dark:bg-gray-900 dark:text-gray-400">
+    <div
+      className="flex justify-around items-center text-sm bg-white border-t-2 fixed bottom-0 w-full p-2 dark:bg-gray-900 dark:text-gray-400"
+      style={{ width: width > 400 ? "400px" : "100%" }}
+    >
       <NavLink
         exact
         to="/"
